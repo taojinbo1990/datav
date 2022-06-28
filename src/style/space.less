@@ -1,0 +1,36 @@
+@spaceTypes: {
+  p: padding;
+  m: margin;
+};
+
+@spaces: {
+  4: 4px;
+  8: 8px;
+  12: 12px;
+  16: 16px;
+  24: 24px;
+  38: 38px;
+}; 
+
+@position:{
+  t: top;
+  b: bottom;
+  l: left;
+  r: right;
+}
+
+each(@spaceTypes, .(@spaceTypesValue, @spaceTypesKey){
+
+  each(@spaces , .(@spaceValue,@spaceKey){
+    .@{spaceTypesKey}-@{spaceKey}{
+      @{spaceTypesValue}: @spaceValue;
+    }
+    
+    each(@position, .(@positionValue,@positionKey){
+      .@{spaceTypesKey}@{positionKey}-@{spaceKey}{
+        @{spaceTypesValue}-@{positionValue}: @spaceValue;
+      }
+    })
+  })
+
+})
